@@ -22,7 +22,7 @@ At work, I needed to read a .msg file. Since I use a Mac, I quickly realized tha
 #### Build
 The project uses Bun. To build it simply run:
 ```
-bun .\build.ts
+bun ./build.ts
 ```
 The command will put a final HTML in `build` folder.
 
@@ -34,3 +34,24 @@ Branches:
 
 ### Support
 If you wish to support me you can by me a [coffee](https://buymeacoffee.com/markian98f).
+
+### Docker / Podman
+If you already have the static site built into `lib/`, you can serve it with a small nginx container.
+
+Build the image:
+```bash
+docker build -t msg-viewer:latest .
+# or with podman
+podman build -t msg-viewer:latest .
+```
+
+Run the container (maps container port 80 to host port 8080):
+```bash
+docker run --rm -p 8080:80 msg-viewer:latest
+# or with podman
+podman run --rm -p 8080:80 msg-viewer:latest
+```
+
+Notes:
+- The provided `Dockerfile` serves the contents of the repository `lib/` directory with nginx.
+- If you need the container to also perform the build step inside the image, I can add a multi-stage builder Dockerfile that runs Bun and copies output into nginx (optional).
