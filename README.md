@@ -36,8 +36,7 @@ docker run --rm -p 8080:80 msg-viewer:latest
 podman run --rm -p 8080:80 msg-viewer:latest
 ```
 
-### Development
-#### Build
+### Bun
 The project uses Bun. To build it simply run:
 ```
 bun ./build.ts
